@@ -1,0 +1,27 @@
+<div class="p-6">
+  <div class="mt-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+    <%= if @loading do %>
+      <%= for _ <- 1..6 do %>
+        <div class="p-4 border rounded shadow bg-gray-200 animate-pulse">
+          <div class="w-16 h-16 bg-gray-300 mx-auto mb-4"></div>
+          <div class="h-4 bg-gray-300 mb-2"></div>
+          <div class="h-4 bg-gray-300 mb-2"></div>
+        </div>
+      <% end %>
+    <% else %>
+      <%= for state <- @states do %>
+        <div class="p-4 border rounded shadow bg-white">
+          <h2 class="text-lg font-bold text-center"><%= state["state"] %></h2>
+          <ul class="text-sm mt-2">
+            <li><strong>Cases:</strong> <%= state["cases"] %></li>
+            <li><strong>Today's Cases:</strong> <%= state["todayCases"] %></li>
+            <li><strong>Deaths:</strong> <%= state["deaths"] %></li>
+            <li><strong>Today's Deaths:</strong> <%= state["todayDeaths"] %></li>
+            <li><strong>Recovered:</strong> <%= state["recovered"] %></li>
+            <li><strong>Population:</strong> <%= state["population"] %></li>
+          </ul>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+</div>

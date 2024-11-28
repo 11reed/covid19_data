@@ -1,0 +1,31 @@
+<div class="p-6">
+  <div class="mt-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+    <%= if @loading do %>
+      <%= for _ <- 1..6 do %>
+        <div class="p-4 border rounded shadow bg-gray-200 animate-pulse">
+          <div class="w-16 h-16 bg-gray-300 mx-auto mb-4"></div>
+          <div class="h-4 bg-gray-300 mb-2"></div>
+          <div class="h-4 bg-gray-300 mb-2"></div>
+        </div>
+      <% end %>
+    <% else %>
+      <%= for country <- @countries do %>
+        <div class="p-4 border rounded shadow bg-white">
+          <img
+            src={country["countryInfo"]["flag"]}
+            alt={"#{country["country"]} flag"}
+            class="w-16 h-16 mx-auto mb-4"
+          />
+          <h2 class="text-lg font-bold text-center"><%= country["country"] %></h2>
+          <ul class="text-sm mt-2">
+            <li><strong>Cases:</strong> <%= country["cases"] %></li>
+            <li><strong>Deaths:</strong> <%= country["deaths"] %></li>
+            <li><strong>Recovered:</strong> <%= country["recovered"] %></li>
+          </ul>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+</div>
+
+
