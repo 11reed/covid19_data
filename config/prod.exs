@@ -6,6 +6,11 @@ import Config
 # which you should run after static files are built and
 # before starting your production server.
 config :covid19_data, Covid19DataWeb.Endpoint,
+  cache_static_manifest: "priv/static/cache_manifest.json",
+  url: [host: "covid19-data-4jh8.onrender.com", port: 443, scheme: "https"],
+  secret_key_base: System.get_env("SECRET_KEY_BASE")
+
+config :covid19_data, Covid19DataWeb.Endpoint,
   cache_static_manifest: "priv/static/cache_manifest.json"
 
 # Configures Swoosh API Client
