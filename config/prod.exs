@@ -8,10 +8,10 @@ import Config
 config :covid19_data, Covid19DataWeb.Endpoint,
   cache_static_manifest: "priv/static/cache_manifest.json",
   url: [host: "covid19-data-4jh8.onrender.com", port: 443, scheme: "https"],
-  secret_key_base: System.get_env("SECRET_KEY_BASE")
-
-config :covid19_data, Covid19DataWeb.Endpoint,
-  cache_static_manifest: "priv/static/cache_manifest.json"
+  secret_key_base: System.get_env("SECRET_KEY_BASE"),
+  live_view: [
+    signing_salt: System.get_env("LIVE_VIEW_SALT")  # Added this for LiveView
+  ]
 
 # Configures Swoosh API Client
 config :swoosh, api_client: Swoosh.ApiClient.Finch, finch_name: Covid19Data.Finch
@@ -24,3 +24,4 @@ config :logger, level: :info
 
 # Runtime production configuration, including reading
 # of environment variables, is done on config/runtime.exs.
+
