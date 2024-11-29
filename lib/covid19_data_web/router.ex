@@ -2,6 +2,7 @@ defmodule Covid19DataWeb.Router do
   use Covid19DataWeb, :router
 
   pipeline :browser do
+    plug MyAppWeb.Plugs.RateLimiter
     plug :accepts, ["html"]
     plug :fetch_session
     plug :fetch_live_flash
@@ -11,6 +12,7 @@ defmodule Covid19DataWeb.Router do
   end
 
   pipeline :api do
+    plug MyAppWeb.Plugs.RateLimiter
     plug :accepts, ["json"]
   end
 

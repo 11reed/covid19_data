@@ -1,3 +1,5 @@
+https://covid19-data.fly.dev/
+
 # Covid19Data
 
 To start your Phoenix server:

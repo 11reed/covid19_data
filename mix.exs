@@ -55,6 +55,7 @@ defmodule Covid19Data.MixProject do
       {:jason, "~> 1.2"},
       {:httpoison, "~> 1.8"},
       {:dns_cluster, "~> 0.1.1"},
+      {:hammer, "~> 6.1"},
       {:bandit, "~> 1.2"}
     ]
   end
