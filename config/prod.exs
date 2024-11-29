@@ -7,11 +7,11 @@ import Config
 # before starting your production server.
 config :covid19_data, Covid19DataWeb.Endpoint,
   cache_static_manifest: "priv/static/cache_manifest.json",
-  url: [host: "covid19-data.fly.dev", port: 80], # Update to Fly.io's hostname and port
+  url: [host: "covid19-data.fly.dev", port: 80],
   http: [ip: {0, 0, 0, 0}, port: 8080],
   secret_key_base: System.get_env("SECRET_KEY_BASE"),
   live_view: [
-    signing_salt: System.get_env("LIVE_VIEW_SALT")  # Added this for LiveView
+    signing_salt: System.get_env("LIVE_VIEW_SALT")
   ]
 
 # Configures Swoosh API Client

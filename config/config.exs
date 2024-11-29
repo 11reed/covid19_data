@@ -10,7 +10,6 @@ import Config
 config :covid19_data,
   generators: [timestamp_type: :utc_datetime]
 
-# Configures the endpoint
 config :covid19_data, Covid19DataWeb.Endpoint,
   url: [host: "localhost"],
   adapter: Bandit.PhoenixAdapter,
@@ -21,16 +20,8 @@ config :covid19_data, Covid19DataWeb.Endpoint,
   pubsub_server: Covid19Data.PubSub,
   live_view: [signing_salt: "dFvRmKNp"]
 
-# Configures the mailer
-#
-# By default it uses the "Local" adapter which stores the emails
-# locally. You can see the emails in your browser, at "/dev/mailbox".
-#
-# For production it's recommended to configure a different adapter
-# at the `config/runtime.exs`.
 config :covid19_data, Covid19Data.Mailer, adapter: Swoosh.Adapters.Local
 
-# Configure esbuild (the version is required)
 config :esbuild,
   version: "0.17.11",
   covid19_data: [
@@ -40,7 +31,6 @@ config :esbuild,
     env: %{"NODE_PATH" => Path.expand("../deps", __DIR__)}
   ]
 
-# Configure tailwind (the version is required)
 config :tailwind,
   version: "3.4.0",
   covid19_data: [
@@ -52,12 +42,10 @@ config :tailwind,
     cd: Path.expand("../assets", __DIR__)
   ]
 
-# Configures Elixir's Logger
 config :logger, :console,
   format: "$time $metadata[$level] $message\n",
   metadata: [:request_id]
 
-# Use Jason for JSON parsing in Phoenix
 config :phoenix, :json_library, Jason
 
 # Import environment specific config. This must remain at the bottom

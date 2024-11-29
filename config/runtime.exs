@@ -18,8 +18,8 @@ import Config
 # script that automatically sets the env var above.
 config :hammer,
   backend: {Hammer.Backend.ETS, [
-    expiry_ms: 60_000 * 60,  # 1-hour expiry
-    cleanup_interval_ms: 60_000 * 5 # Cleanup expired entries every 5 minutes
+    expiry_ms: 60_000 * 60,
+    cleanup_interval_ms: 60_000 * 5
   ]}
 
 if System.get_env("PHX_SERVER") do
@@ -28,7 +28,6 @@ end
 
 # Production-specific configuration
 if config_env() == :prod do
-  # Fetch the secret key base or raise an error if it's missing
   secret_key_base =
     System.get_env("SECRET_KEY_BASE") ||
       raise """
@@ -36,11 +35,9 @@ if config_env() == :prod do
       You can generate one by calling: mix phx.gen.secret
       """
 
-  # Set the host and port for Fly.io
   host = System.get_env("PHX_HOST") || "covid19-data.fly.dev"
   port = String.to_integer(System.get_env("PORT") || "8080")
 
-  # Endpoint configuration
   config :covid19_data, Covid19DataWeb.Endpoint,
     url: [host: host, port: 80],
     http: [
@@ -48,7 +45,7 @@ if config_env() == :prod do
       port: port
     ],
     secret_key_base: secret_key_base,
-    live_view: [signing_salt: System.fetch_env!("LIVE_VIEW_SALT")] # Add LiveView salt
+    live_view: [signing_salt: System.fetch_env!("LIVE_VIEW_SALT")]
 
   # ## SSL Support
   #
